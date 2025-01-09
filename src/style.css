@@ -4,18 +4,29 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--color-text);
+  background-color: var(--bg-body);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  --color-text: rgba(255, 255, 255, 0.87);
   --border-color: #333;
-  --background-color: #292929;
-  --bg-color-light: rgb(251, 174, 161);
-  --bg-color-medium: tomato;
+  --bg-body: #242424;
+  --bg-row-light: rgb(251, 174, 161);
+  --bg-row-acent: tomato;
+  --bg-btn-primary: green;
+  --bg-btn-secondary: gray;
+
+  --fs-sm: clamp(1.28rem, 0.17vi + 1.21rem, 1.43rem);
+  --fs-base: clamp(1.6rem, 0.34vi + 1.46rem, 1.8rem);
+  --fs-md: clamp(2rem, 0.61vi + 1.76rem, 2.53rem);
+  --fs-lg: clamp(2.5rem, 1vi + 2.1rem, 3.38rem);
+  --fs-xl: clamp(3.13rem, 1.56vi + 2.5rem, 4.5rem);
+  --fs-xxl: clamp(3.91rem, 2.38vi + 2.96rem, 6rem);
+  --fs-xxxl: clamp(4.88rem, 3.54vi + 3.47rem, 8rem);
 }
 
 *,
@@ -35,7 +46,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  font-size: 1.6rem;
+  font-size: var(--fs-base);
 }
 
 #app {
@@ -78,13 +89,13 @@ td {
   padding: 1em;
   border: 1px solid var(--border-color);
   border-bottom: none;
-  background-color: var(--bg-color-light);
+  background-color: var(--bg-row-light);
 }
 
 #schedule-header {
   padding: 1em;
   border: 1px solid var(--border-color);
-  background-color: var(--bg-color-medium);
+  background-color: var(--bg-row-acent);
 }
 
 #schedule-entries {
@@ -93,6 +104,6 @@ td {
 
 #schedule-footer {
   #schedule-total-row {
-    background-color: var(--bg-color-medium);
+    background-color: var(--bg-row-acent);
   }
 }
