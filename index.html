@@ -1,16 +1,95 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <link rel="stylesheet" href="/src/style.css" />
-  </head>
-  <body>
-    <div id="app">
-      <h1>My schedule</h1>
-    </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="/src/style.css" />D
+</head>
+
+<body>
+  <div id="app">
+    <h1>My schedule</h1>
+    <section id="schedule-wrapper">
+      <form id="schedule-form">
+        <!-- Header Section -->
+        <div id="timer-header" class="row">
+          <p>Lunes</p>
+          <p>Semana 2 <span>Enero</span></p>
+          <input type="date" id="timer-date">
+        </div>
+
+        <!-- Table Section -->
+        <table id="schedule-table">
+
+          <!-- Header -->
+          <thead id="schedule-header">
+            <tr>
+              <th>Cliente</th>
+              <th>Tarea</th>
+              <th>Hora de inicio</th>
+              <th>Hora de Fin</th>
+              <th>Min. Duración</th>
+              <th>Hora Matemática</th>
+            </tr>
+          </thead>
+
+          <!-- Body -->
+          <tbody id="schedule-entries">
+            <tr class="entry-row" data-row-id="1">
+              <td>
+                <input type="text" name="client" class="entry-client" id="entry-client-1">
+              </td>
+              <td>
+                <input type="text" name="task" class="entry-task" id="entry-task-1">
+              </td>
+              <td>
+                <input type="time" name="start-time" class="entry-start" id="entry-start-1">
+              </td>
+              <td>
+                <input type="time" name="end-time" class="entry-end" id="entry-end-1">
+              </td>
+              <td>
+                <p class="entry-minutes" id="entry-minutes-1">0.00</p>
+              </td>
+              <td>
+                <p class="entry-hours" id="entry-hours-1">0.00</p>
+              </td>
+            </tr>
+
+            <tr class="add-row">
+              <td colspan="6">
+                <button type="button" id="schedule-add-row">+ Añadir nueva fila</button>
+              </td>
+            </tr>
+          </tbody>
+
+          <!-- Footer -->
+          <tfoot id="schedule-footer">
+            <tr id="schedule-total-row">
+              <td colspan="5">Total</td>
+              <td>
+                <p id="schedule-total">0.00</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <button type="submit" id="schedule-submit">Guardar</button>
+              </td>
+              <td colspan="3">
+                <button type="button" id="schedule-reset">Reset</button>
+              </td>
+            </tr>
+          </tfoot>
+
+        </table>
+      </form>
+
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
