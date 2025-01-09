@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM has been fully loaded');
   initializeApp();
 
+  const allRows = document.querySelectorAll('.entry-row');
+  allRows.forEach(row => {
+    console.log(row.id);
+    document.addEventListener('input', (event) => {
+      console.log(event.target.value);
+    });
+  });
+
 });
 
 const tbodyEntries = document.querySelector('#schedule-entries');
