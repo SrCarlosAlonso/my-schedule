@@ -13,12 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-text: rgba(255, 255, 255, 0.87);
-  --border-color: #333;
-  --bg-body: #242424;
-  --bg-row-light: rgb(251, 174, 161);
-  --bg-row-acent: tomato;
+  --border-color: #2e2b41;
+  --bg-body: #1c1a27;
+  --bg-row-light: #242333;
+  --bg-row-acent: #221952;
   --bg-btn-primary: green;
   --bg-btn-secondary: gray;
+
+  --color-danger: #e8093e;
+  --color-success: #00864a;
 
   --fs-sm: clamp(1.28rem, 0.17vi + 1.21rem, 1.43rem);
   --fs-base: clamp(1.6rem, 0.34vi + 1.46rem, 1.8rem);
@@ -46,7 +49,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
 }
 
 #app {
@@ -57,8 +60,24 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: var(--fs-xxl);
   line-height: 1.1;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: filter 250ms ease;
+
+  &:hover {
+    filter: brightness(1.3);
+  }
+}
+
+.padding-s {
+  padding: 0.7rem;
 }
 
 .row {
@@ -83,6 +102,7 @@ td {
 #schedule-wrapper {
   padding: 1em;
   border: 1px solid var(--border-color);
+  margin: 1rem;
 }
 
 #timer-header {
@@ -96,14 +116,79 @@ td {
   padding: 1em;
   border: 1px solid var(--border-color);
   background-color: var(--bg-row-acent);
+  font-size: var(--fs-sm);
+  line-height: 1.2;
 }
 
 #schedule-entries {
   background-color: var(--background-color);
 }
+#schedule-entries tr.entry-row:nth-child(even) {
+  background-color: var(--bg-row-light);
+}
+.entry-row td{
+  padding: 0px;
+}
+.entry-row input{
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: transparent;
+  font-size: var(--fs-sm);
+}
 
 #schedule-footer {
   #schedule-total-row {
+    font-size: var(--fs-sm);
     background-color: var(--bg-row-acent);
+    td {
+      padding: 0.3rem;
+    }
   }
+}
+
+.add-row {
+  padding: 0;
+  button {
+    border: 1px solid var(--border-color);
+    background-color: #211e33;
+  }
+}
+#schedule-submit {
+  background-color: var(--color-success);
+}
+#schedule-reset {
+  background-color: var(--color-danger);
+}
+
+
+/* Distribucion de anchos por porcentaje */
+#schedule-table th:nth-child(1),
+#schedule-table td:nth-child(1) {
+    width: 15%; /* Clientes */
+}
+
+#schedule-table th:nth-child(2),
+#schedule-table td:nth-child(2) {
+    width: 35%; /* Tareas */
+}
+
+#schedule-table th:nth-child(3),
+#schedule-table td:nth-child(3) {
+    width: 12.5%; /* Hora de inicio */
+}
+
+#schedule-table th:nth-child(4),
+#schedule-table td:nth-child(4) {
+    width: 12.5%; /* Hora de fin */
+}
+
+#schedule-table th:nth-child(5),
+#schedule-table td:nth-child(5) {
+    width: 12.5%; /* Min. Duración */
+}
+
+#schedule-table th:nth-child(6),
+#schedule-table td:nth-child(6) {
+    width: 12.5%; /* Hora Matemática */
 }

@@ -31,39 +31,20 @@
               <th>Tarea</th>
               <th>Hora de inicio</th>
               <th>Hora de Fin</th>
-              <th>Min. Duración</th>
+              <th colspan="1">Min. Duración</th>
               <th>Hora Matemática</th>
             </tr>
           </thead>
 
           <!-- Body -->
           <tbody id="schedule-entries">
-            <tr class="entry-row" data-row-id="1">
-              <td>
-                <input type="text" name="client" class="entry-client" id="entry-client-1">
-              </td>
-              <td>
-                <input type="text" name="task" class="entry-task" id="entry-task-1">
-              </td>
-              <td>
-                <input type="time" name="start-time" class="entry-start" id="entry-start-1">
-              </td>
-              <td>
-                <input type="time" name="end-time" class="entry-end" id="entry-end-1">
-              </td>
-              <td>
-                <p class="entry-minutes" id="entry-minutes-1">0.00</p>
-              </td>
-              <td>
-                <p class="entry-hours" id="entry-hours-1">0.00</p>
-              </td>
-            </tr>
 
             <tr class="add-row">
-              <td colspan="6">
+              <td colspan="6" class="padding-s">
                 <button type="button" id="schedule-add-row">+ Añadir nueva fila</button>
               </td>
             </tr>
+
           </tbody>
 
           <!-- Footer -->
@@ -75,10 +56,10 @@
               </td>
             </tr>
             <tr>
-              <td colspan="5">
+              <td colspan="5" class="padding-s">
                 <button type="submit" id="schedule-submit">Guardar</button>
               </td>
-              <td colspan="3">
+              <td colspan="3" class="padding-s">
                 <button type="button" id="schedule-reset">Reset</button>
               </td>
             </tr>
