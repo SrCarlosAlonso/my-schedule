@@ -1,19 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM has been fully loaded');
   initializeApp();
-
-  const allRows = document.querySelectorAll('.entry-row');
-  allRows.forEach(row => {
-    console.log(row.id);
-    document.addEventListener('input', (event) => {
-      console.log(event.target.value);
-    });
-  });
-
 });
 
 const tbodyEntries = document.querySelector('#schedule-entries');
 const defaulRows = 5;
+
+const submitButton = document.querySelector('#schedule-submit');
 
 const initializeApp = () => {
   console.log('App has been initialized');
@@ -24,9 +17,23 @@ const initializeApp = () => {
     defaultEntry();
   }
 
-};
+  const allRows = document.querySelectorAll('.entry-row');
+  allRows.forEach(row => {
+    console.log(row.id);
+    // ? - When the input change, the object "myScheduleStorage" should be updated with the new values. But the object it's not saved in local storage yet.
+    document.addEventListener('input', (event) => {
+      console.log(event.target.value);
+    });
+  });
+  // ? - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log('Button has been clicked');
+    saveSchedule(myScheduleStorage);
+  });
 
-//Listeners
+
+};
 
 // Helpers
 const deleteChild = (parent) => {
@@ -84,3 +91,27 @@ const defaultEntry = () => {
 const generateID = () => {
   return Math.floor(Math.random() * 1000);
 }
+
+// ! - This is the object that should be saved in local storage, confirm if it's correct.
+// ? - Storage example
+const myScheduleStorage = {
+  id: 8112025,
+  semana: 2,
+  mes: 1,
+  dia: 'lunes',
+  entries: [
+    {
+      id: 1,
+      client: 'Cliente 1',
+      task: 'Tarea 1',
+      start: '09:00',
+      end: '10:00',
+      minutes: 60,
+      hours: 1
+    }
+  ]
+}
+// TODO - This function should save the object "myScheduleStorage" in local storage.
+const saveSchedule = (schedule) => {
+  console.log(schedule);
+};
