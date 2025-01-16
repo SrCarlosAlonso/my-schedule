@@ -12,7 +12,12 @@ const dayValue = document.querySelector('#timer-day');
 const dateValue = document.querySelector('#timer-date');
 console.log(weekValue, monthValue, dayValue, dateValue)
 
-const dateObj = {};
+let dateObj = {
+  moth: '',
+  day: '',
+  week: '',
+  fullDate: ''
+};
 
 const defaulRows = 5;
 
@@ -82,10 +87,17 @@ const generateDateValue = (date) => {
   };
   const weekNum = getWeekNumber(date);
 
-  dateObj.moth = monthsName[monthNum],
-  dateObj.day = daysName[dayWeek],
-  dateObj.week = weekNum;
-  dateObj.fullDate = date.toISOString().split('T')[0]
+  // dateObj.moth = monthsName[monthNum],
+  // dateObj.day = daysName[dayWeek],
+  // dateObj.week = weekNum;
+  // dateObj.fullDate = date.toISOString().split('T')[0]
+
+  dateObj = {
+    moth: monthsName[monthNum],
+    day: daysName[dayWeek],
+    week: weekNum,
+    fullDate: date.toISOString().split('T')[0]
+  }
 
   return dateObj;
 }
@@ -170,7 +182,11 @@ const entryRowValues = () => {
   });
 }
 // TODO - Listener when date change we print the new date
-
+dateValue.addEventListener('change', (e) => {
+  const date = new Date(dateValue.value);
+  generateDateValue(date);
+  printDate(dateObj);
+})
 // Helpers
 const deleteChild = (parent) => {
   while (parent.firstChild) {
