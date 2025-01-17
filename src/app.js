@@ -2,6 +2,7 @@ import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
 import { entryRowValues } from './utils/listenerEntryRow.js';
 import { deleteChild } from './utils/helpers.js';
+import { alert } from './utils/showAlert.js'
 
 import { domElements } from './utils/domElements.js'
 const { tbodyEntries, defaulRows, dateValue, submitButton } = domElements;
@@ -39,6 +40,7 @@ export const initializeApp = () => {
     console.log('Button has been clicked');
     // TODO - Valide content before saving.
     saveSchedule(myScheduleStorage);
+    alert('success', 'Schedule saved successfully');
   });
 
 };

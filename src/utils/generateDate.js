@@ -1,5 +1,5 @@
 import { domElements } from './domElements.js'
-const { dayValue, monthValue, weekValue, dateValue} = domElements;
+const { dayValue, monthValue, weekValue, dateValue } = domElements;
 
 export let dateObj = {
   moth: '',
@@ -37,7 +37,7 @@ export const generateDateValue = (date) => {
 export const printDate = (date) => {
   dayValue.innerHTML = date.day;
   monthValue.innerHTML = date.moth;
-  weekValue.innerHTML = `Semana ${date.week}`;
+  weekValue.innerHTML = `Semana   <span>${date.week}</span>`;
 
   dateValue.value = date.fullDate;
 }
