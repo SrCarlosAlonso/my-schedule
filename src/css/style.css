@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "HuboSans";
+  src: url("../assets/fonts/HuboSans.woff2") format("woff2"),
+    url("../assets/fonts/HuboSans.woff") format("woff");
+  font-display: swap;
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "HuboSans";
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,10 +21,11 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-text: rgba(255, 255, 255, 0.87);
+  --color-text-accent: #9888f3;
   --border-color: #2e2b41;
   --bg-body: #1c1a27;
   --bg-row-light: #242333;
-  --bg-row-acent: #221952;
+  --bg-row-accent: #221952;
   --bg-btn-primary: green;
   --bg-btn-secondary: gray;
 
@@ -39,6 +48,7 @@
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: inherit;
 }
 html {
   font-size: 62.5%;
@@ -60,8 +70,11 @@ body {
 }
 
 h1 {
-  font-size: var(--fs-xxl);
+  font-size: var(--fs-xl);
   line-height: 1.1;
+  font-weight: 700;
+  color: var(--color-text-accent);
+  filter: drop-shadow(0px 0px 16px #0000004c);
 }
 
 button {
@@ -84,6 +97,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 1em;
 }
 table {
@@ -106,30 +120,67 @@ td {
 }
 
 #timer-header {
+  font-size: var(--fs-md);
   padding: 1em;
-  border: 1px solid var(--border-color);
-  border-bottom: none;
   background-color: var(--bg-row-light);
 }
 
+#timer-header input {
+  max-width: 230px;
+  font-size: var(--fs-md);
+  padding: 0.2rem 0.7em;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: background-color 1s ease, border 500ms ease;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background-color: #3b3954 !important;
+    border: 2px solid #9888f3;
+  }
+  &:focus {
+    background-color: #3b3954 !important;
+    border: 2px solid #9888f3;
+    outline: none;
+  }
+}
+
+#timer-header input {
+  background-color: transparent;
+}
+#timer-week {
+  display: flex;
+  gap: 1rem;
+}
 #schedule-header {
   padding: 1em;
   border: 1px solid var(--border-color);
-  background-color: var(--bg-row-acent);
+  background-color: var(--bg-row-accent);
   font-size: var(--fs-sm);
   line-height: 1.2;
 }
 
-#schedule-entries {
+#schedule-entries tr.entry-row {
   background-color: var(--background-color);
+  transition: background-color 500ms ease;
+  &:hover {
+    background-color: #1a1825 !important;
+  }
 }
 #schedule-entries tr.entry-row:nth-child(even) {
   background-color: var(--bg-row-light);
+  &:hover {
+    background-color: #272636 !important;
+  }
 }
-.entry-row td{
+
+.entry-row td {
   padding: 0px;
 }
-.entry-row input{
+.entry-row input {
   width: 100%;
   height: 100%;
   padding: 1rem;
@@ -140,7 +191,7 @@ td {
 #schedule-footer {
   #schedule-total-row {
     font-size: var(--fs-sm);
-    background-color: var(--bg-row-acent);
+    background-color: var(--bg-row-accent);
     td {
       padding: 0.3rem;
     }
@@ -161,34 +212,78 @@ td {
   background-color: var(--color-danger);
 }
 
-
 /* Distribucion de anchos por porcentaje */
 #schedule-table th:nth-child(1),
 #schedule-table td:nth-child(1) {
-    width: 15%; /* Clientes */
+  width: 15%; /* Clientes */
 }
 
 #schedule-table th:nth-child(2),
 #schedule-table td:nth-child(2) {
-    width: 35%; /* Tareas */
+  width: 35%; /* Tareas */
 }
 
 #schedule-table th:nth-child(3),
 #schedule-table td:nth-child(3) {
-    width: 12.5%; /* Hora de inicio */
+  width: 12.5%; /* Hora de inicio */
 }
 
 #schedule-table th:nth-child(4),
 #schedule-table td:nth-child(4) {
-    width: 12.5%; /* Hora de fin */
+  width: 12.5%; /* Hora de fin */
 }
 
 #schedule-table th:nth-child(5),
 #schedule-table td:nth-child(5) {
-    width: 12.5%; /* Min. Duración */
+  width: 12.5%; /* Min. Duración */
 }
 
 #schedule-table th:nth-child(6),
 #schedule-table td:nth-child(6) {
-    width: 12.5%; /* Hora Matemática */
+  width: 12.5%; /* Hora Matemática */
+}
+
+/* Alerts */
+#alert {
+  width: 98%;
+  margin: 1rem auto;
+  position: relative;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  filter: drop-shadow(0px 0px 16px #00000029);
+
+  & button {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    border-radius: 0 0 0 0.5rem;
+    background-color: var(--color-danger);
+
+    svg {
+      transform: rotate(0deg);
+      transition: transform 250ms ease;
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+.notification {
+  background-color: #332a5b;
+}
+.error {
+  background-color: #4a1824;
+}
+.warning {
+  background-color: #745a14;
+}
+.success {
+  background-color: #15422d;
 }

@@ -7,11 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vite App</title>
   <link rel="stylesheet" href="/src/css/style.css" />
+  <link rel="preload" href="./src/assets/fonts/HuboSans.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
 <body>
   <div id="app">
-    <h1>My schedule</h1>
+    <h1>My schedule </h1>
     <section id="schedule-wrapper">
       <form id="schedule-form">
         <!-- Header Section -->
@@ -19,7 +20,7 @@
           <p id="timer-day"></p>
           <p id="timer-week"></p>
           <p id="timer-month"></p>
-          <input type="date" id="timer-date" >
+          <input type="date" id="timer-date">
         </div>
 
         <!-- Table Section -->
@@ -70,6 +71,15 @@
       </form>
 
     </section>
+    <!-- Alerts goes here -->
+    <div id="alert" class="success">
+      <p>This is a alert</p>
+      <button type="button" id="alert-close">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
