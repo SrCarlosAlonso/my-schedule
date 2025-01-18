@@ -1,6 +1,6 @@
 import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
-import { entryRowValues } from './utils/listenerEntryRow.js';
+import { entryRowValues } from './utils/entryRowHandler.js';
 import { deleteChild } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
