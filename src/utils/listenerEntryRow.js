@@ -9,7 +9,7 @@ export const entryRowValues = () => {
       const rowHijos = Array.from(row.children)
 
       const rowValues = {
-        id: `id-${id}`,
+        id: `row-${id}`,
         cliente: rowHijos[0].querySelector('.entry-input').value,
         tarea: rowHijos[1].querySelector('.entry-input').value,
         inicio: rowHijos[2].querySelector('.entry-input').value,

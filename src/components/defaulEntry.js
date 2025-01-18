@@ -1,5 +1,6 @@
 import { generateID } from '../utils/helpers.js';
 import { domElements } from '../utils/domElements.js';
+import { clientes } from '../utils/formatClient.js';
 const { tbodyEntries } = domElements;
 
 export const defaultEntry = () => {
@@ -8,10 +9,24 @@ export const defaultEntry = () => {
   tr.id = generateID();
 
   const tdClient = document.createElement('td');
-  const inputClient = document.createElement('input');
-  inputClient.type = 'text';
+  const inputClient = document.createElement('select');
   inputClient.classList.add('entry-input');
   tdClient.appendChild(inputClient);
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = 'default';
+  defaultOption.textContent = 'Selecciona un cliente';
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  inputClient.appendChild(defaultOption);
+
+  // TODO - Create the dropdown options.
+  clientes.forEach(cliente => {
+    const option = document.createElement('option');
+    option.value = cliente.id;
+    option.textContent = cliente.name;
+    inputClient.appendChild(option);
+  });
 
   const tdTaks = document.createElement('td');
   const inputTask = document.createElement('input');
