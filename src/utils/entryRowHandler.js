@@ -25,34 +25,41 @@ export const entryRowValues = () => {
 
 const getTimer = (row) => {
   const inputTimeStart = row.querySelector('input#time-start');
-  const inputTimeEnd   = row.querySelector('input#time-end');
-  const printMinutes   = row.querySelector('td:nth-child(5)');
-  const printHours     = row.querySelector('td:nth-child(6)');
+  const inputTimeEnd = row.querySelector('input#time-end');
+  const printMinutes = row.querySelector('td:nth-child(5)');
+  const printHours = row.querySelector('td:nth-child(6)');
 
   const handleTimeChange = () => {
     const TS = inputTimeStart.value;
     const TE = inputTimeEnd.value;
 
     if (TS !== '' && TS !== undefined && TE !== '' && TE !== undefined) {
-      calMinutes(TS, TE);
-      calHhours(TS, TE);
+      calTime(TS, TE, 'min');
+      calTime(TS, TE, 'hour');
     }
   };
 
   inputTimeStart.addEventListener('change', handleTimeChange);
   inputTimeEnd.addEventListener('change', handleTimeChange);
 
-  const calMinutes = (start, end) => {
-    console.log('Calculating minutes');
-    console.log(start, end);
-    printMinutes.textContent = 'Min...'
-  }
+  const calTime = (start, end, operator) => {
+    const startTime = start;
+    const endTime = end;
+    const operationTime = operator;
 
-  const calHhours = (start, end) => {
-    console.log('Calculating hours');
-    console.log(start, end);
-    printHours.textContent = 'Hrs...'
+    if (operationTime === 'min') {
+      return console.log('Calculating minutes');
+      // printMinutes.textContent = 'Min...' Problem with the scope
+
+    } else if (operationTime === 'hour') {
+      return console.log('Calculating hours');
+      // printHours.textContent = 'Hrs...' Problem with the scope
+
+    }
   };
+
 };
+
+// TODO - Refactor this, donr use two functions for calculate min and hours, I think with one unic fuction if we define STAR, END and OPERATION we can calculate the time in the same function and convert in the same place STRING to NUMBER.
 
 
