@@ -1,5 +1,8 @@
+import { alert } from './showAlert.js'
+
 export const entryRowValues = () => {
   const allRows = document.querySelectorAll('.entry-row');
+
   allRows.forEach(row => {
     const id = row.id;
 
@@ -12,12 +15,13 @@ export const entryRowValues = () => {
         id: `row-${id}`,
         cliente: rowHijos[0].querySelector('.entry-input').value,
         tarea: rowHijos[1].querySelector('.entry-input').value,
-        inicio: rowHijos[2].querySelector('.entry-input').value,
-        fin: rowHijos[3].querySelector('.entry-input').value,
+        inicio: conversor(rowHijos[2].querySelector('.entry-input').value),
+        fin: conversor(rowHijos[3].querySelector('.entry-input').value),
         duracion: rowHijos[4].value,
         hora: rowHijos[5].value,
       }
       console.log(rowValues)
+
     });
     getTimer(row);
   });
@@ -30,36 +34,27 @@ const getTimer = (row) => {
   const printHours = row.querySelector('td:nth-child(6)');
 
   const handleTimeChange = () => {
-    const TS = inputTimeStart.value;
-    const TE = inputTimeEnd.value;
+    const TS = conversor(inputTimeStart.value);
+    const TE = conversor(inputTimeEnd.value);
 
-    if (TS !== '' && TS !== undefined && TE !== '' && TE !== undefined) {
-      calTime(TS, TE, 'min');
-      calTime(TS, TE, 'hour');
-    }
+    if ( TS > TE ) return alert('error', 'The end time must be greater than the start time');
+
+
+    const timeMinutes = TE - TS;
+    const timeHours = (timeMinutes / 60).toFixed(2);
+
+    printMinutes.textContent = timeMinutes;
+    printHours.textContent = timeHours;
+
+    console.log({ start: inputTimeStart.value, end: inputTimeEnd.value, minutes: timeMinutes, hours: timeHours });
   };
 
   inputTimeStart.addEventListener('change', handleTimeChange);
   inputTimeEnd.addEventListener('change', handleTimeChange);
-
-  const calTime = (start, end, operator) => {
-    const startTime = start;
-    const endTime = end;
-    const operationTime = operator;
-
-    if (operationTime === 'min') {
-      return console.log('Calculating minutes');
-      // printMinutes.textContent = 'Min...' Problem with the scope
-
-    } else if (operationTime === 'hour') {
-      return console.log('Calculating hours');
-      // printHours.textContent = 'Hrs...' Problem with the scope
-
-    }
-  };
-
 };
 
-// TODO - Refactor this, donr use two functions for calculate min and hours, I think with one unic fuction if we define STAR, END and OPERATION we can calculate the time in the same function and convert in the same place STRING to NUMBER.
-
+function conversor(hora) {
+  const [h, m] = hora.split(':').map(Number);
+  return h * 60 + m;
+}
 
