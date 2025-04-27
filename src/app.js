@@ -8,12 +8,19 @@ import { domElements } from './utils/domElements.js'
 const { tbodyEntries, defaulRows, dateValue, submitButton } = domElements;
 
 export const initializeApp = () => {
-  console.log('App has been initialized');
+  // console.log('App has been initialized');
 
   // #0 - Dafault date is today
   const date = new Date();
   generateDateValue(date);
   printDate(dateObj);
+
+  //  If the date is changed, the date object is updated and the date is printed.
+  dateValue.addEventListener('change', (e) => {
+    const date = new Date(dateValue.value);
+    generateDateValue(date);
+    printDate(dateObj);
+  })
 
   // #1 - Delete all the rows from the table.
   deleteChild(tbodyEntries);
@@ -23,15 +30,10 @@ export const initializeApp = () => {
     defaultEntry();
   }
 
-  dateValue.addEventListener('change', (e) => {
-    const date = new Date(dateValue.value);
-    generateDateValue(date);
-    printDate(dateObj);
-  })
-
   // #3 - Listeners for the rows Entrys than whe generated.
   // * - Collect the values from the rows before to save them in storage.
   entryRowValues();
+
 
   // #4 - Listener for the submit button, to save the data.
   // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
