@@ -37,14 +37,14 @@ export const defaultEntry = () => {
   const tdStart = document.createElement('td');
   const inputStart = document.createElement('input');
   inputStart.id = `time-start`,
-  inputStart.type = 'time';
+    inputStart.type = 'time';
   inputStart.classList.add('entry-input');
   tdStart.appendChild(inputStart);
 
   const tdEnd = document.createElement('td');
   const inputEnd = document.createElement('input');
   inputEnd.id = `time-end`,
-  inputEnd.type = 'time';
+    inputEnd.type = 'time';
   inputEnd.classList.add('entry-input');
   tdEnd.appendChild(inputEnd);
 
