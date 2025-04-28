@@ -31,9 +31,10 @@ function conversor(hora) {
 
 // TODO - It's not respecting the use of AM/PM. We need use a 24 hours format?.
 
-export const entryRowValues = () => {
+export const getEntryRowValues = () => {
   const allRows = document.querySelectorAll('.entry-row');
-
+  const allEntries = {};
+ con
   allRows.forEach(row => {
     const id = row.id;
     getTimer(row);
@@ -60,14 +61,25 @@ export const entryRowValues = () => {
         rowValues.duracion !== '0' &&
         rowValues.hora !== '0'
       ) {
-        return console.log('Row is valid', rowValues);
-
-      } else {
-        console.log('Row is invalid');
+        return savedTemporalEntries(rowValues);
       }
     });
   });
 
 }
-// Ahora cada row se debe guardar en un array solo si es valido, sino es valido no se guarda
-//  Pero supongo que cada vez que guarda primero hace una copia del objeto lo borrar y luego lo guarda porque sino va a borrar todo el rato el
+
+function savedTemporalEntries(data) {
+  let tempEntries = {
+    id: data.id,
+    cliente: data.cliente,
+    tarea: data.tarea,
+    inicio: data.inicio,
+    fin: data.fin,
+    duracion: data.duracion,
+    hora: data.hora
+  }
+  return tempEntries;
+}
+
+
+// TODO - Now wen need to save using the savedTemporalEntries function in to the allEntries object and return it. And the we can saved properly in the local storage.

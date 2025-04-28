@@ -1,6 +1,6 @@
 import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
-import { entryRowValues } from './utils/entryRowHandler.js';
+import { getEntryRowValues } from './utils/entryRowHandler.js';
 import { deleteChild } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
@@ -32,8 +32,7 @@ export const initializeApp = () => {
 
   // #3 - Listeners for the rows Entrys than whe generated.
   // * - Collect the values from the rows before to save them in storage.
-  entryRowValues();
-
+  getEntryRowValues();
 
   // #4 - Listener for the submit button, to save the data.
   // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
