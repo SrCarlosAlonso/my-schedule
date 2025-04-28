@@ -31,10 +31,11 @@ function conversor(hora) {
 
 // TODO - It's not respecting the use of AM/PM. We need use a 24 hours format?.
 
+let allDayEntries = {};
+
 export const getEntryRowValues = () => {
   const allRows = document.querySelectorAll('.entry-row');
-  const allEntries = {};
- con
+
   allRows.forEach(row => {
     const id = row.id;
     getTimer(row);
@@ -61,15 +62,15 @@ export const getEntryRowValues = () => {
         rowValues.duracion !== '0' &&
         rowValues.hora !== '0'
       ) {
-        return savedTemporalEntries(rowValues);
+        return saveEntries(rowValues);
       }
     });
   });
 
 }
 
-function savedTemporalEntries(data) {
-  let tempEntries = {
+function saveEntries(data) {
+  let newEntry = {
     id: data.id,
     cliente: data.cliente,
     tarea: data.tarea,
@@ -77,9 +78,12 @@ function savedTemporalEntries(data) {
     fin: data.fin,
     duracion: data.duracion,
     hora: data.hora
-  }
-  return tempEntries;
+  };
+
+  allDayEntries[data.id] = newEntry;
+  console.log(allDayEntries)
+  return allDayEntries;
 }
 
-
-// TODO - Now wen need to save using the savedTemporalEntries function in to the allEntries object and return it. And the we can saved properly in the local storage.
+// Ya tenemos el objeto AllDayEntries con todas las entradas del día, ahora quiero que ese objeto se guarde con el ID de la fecha, con campo de semana, y dia por lo que a la funcion getEntryRowsValues (llamarla de otra forma) tenemos que pasarle tambien la informacion de Date que se esta usando.
+// Por otra parte el date esta2 mal.
