@@ -31,7 +31,14 @@ export const initializeApp = () => {
 
   // #3 - Listeners for the rows Entrys than whe generated.
   // * - Collect the values from the rows before to save them in storage.
-  getEntryRowValues();
+  const rows = document.querySelectorAll('.entry-row');
+  rows.forEach((row) => {
+    row.addEventListener('change', (e) => {
+      const taskDay = getValueRow(date);
+      console.log(taskDay);
+    });
+  });
+
 
   // #4 - Listener for the submit button, to save the data.
   // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
