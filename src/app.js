@@ -1,6 +1,6 @@
 import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
-import { getEntryRowValues } from './utils/entryRowHandler.js';
+import { getValueRow } from './utils/entryRowHandler.js';
 import { deleteChild } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
@@ -11,15 +11,14 @@ export const initializeApp = () => {
   // console.log('App has been initialized');
 
   // #0 - Dafault date is today
-  const date = new Date();
+  let date = new Date();
   generateDateValue(date);
-  printDate(dateObj);
 
   //  If the date is changed, the date object is updated and the date is printed.
   dateValue.addEventListener('change', (e) => {
-    const date = new Date(dateValue.value);
+    date = new Date(dateValue.value);
     generateDateValue(date);
-    printDate(dateObj);
+    getDataRows(date);
   })
 
   // #1 - Delete all the rows from the table.

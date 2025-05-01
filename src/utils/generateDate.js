@@ -30,6 +30,7 @@ export const generateDateValue = (date) => {
     week: weekNum,
     fullDate: date.toISOString().split('T')[0]
   }
+  printDate(dateObj);
 
   return dateObj;
 }
