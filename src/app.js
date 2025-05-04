@@ -7,6 +7,20 @@ import { alert } from './utils/showAlert.js'
 import { domElements } from './utils/domElements.js'
 const { tbodyEntries, defaulRows, dateValue, submitButton } = domElements;
 
+// Define objt for save the tasks of the day
+let dayTaks = {
+  id: '99',
+  date: {
+    day: '',
+    month: '',
+    year: '',
+    week: ''
+  },
+  tasks: [
+
+  ]
+};
+
 export const initializeApp = () => {
   // console.log('App has been initialized');
 
@@ -34,44 +48,23 @@ export const initializeApp = () => {
   const rows = document.querySelectorAll('.entry-row');
   rows.forEach((row) => {
     row.addEventListener('change', (e) => {
-      const taskDay = getValueRow(date);
-      console.log(taskDay);
+      dayTaks = getValueRow(dayTaks);
     });
   });
-
 
   // #4 - Listener for the submit button, to save the data.
   // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('Button has been clicked');
-    // TODO - Valide content before saving.
-    saveSchedule(myScheduleStorage);
-    alert('success', 'Schedule saved successfully');
+    if (dayTaks.tasks.length === 0) {
+      return alert('error', 'No hay tareas para guardar');
+    }
+    saveSchedule(dayTaks);
   });
 
 };
 
-// ? - Storage example
-const myScheduleStorage = {
-  id: 8112025,
-  semana: 2,
-  mes: 1,
-  dia: 'lunes',
-  entries: [
-    {
-      id: 1,
-      client: 'Cliente 1',
-      task: 'Tarea 1',
-      start: '09:00',
-      end: '10:00',
-      minutes: 60,
-      hours: 1
-    }
-  ]
-}
-
 // TODO - This function should save the object "myScheduleStorage" in local storage.
-const saveSchedule = (schedule) => {
-  console.log(schedule);
+const saveSchedule = (dayTaks) => {
+  console.log('dayTaks:', dayTaks);
 };

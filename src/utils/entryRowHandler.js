@@ -1,30 +1,14 @@
 import { alert } from './showAlert.js'
 
-export const getValueRow = (date) => {
+export const getValueRow = (dayTaks) => {
   const rows = document.querySelectorAll('.entry-row');
-  //  Se tiene que sacar el Objeto fuera para no reescribirlo cada vez que se llama a la función
-  const objDate = getActualDate(date);
-  const id = `id-${getWeekNumber(date)}${objDate[3]}`;
-  let dayTaks = {
-    id: id,
-    date: {
-      day: objDate[2],
-      month: objDate[1],
-      year: objDate[3],
-      week: getWeekNumber(date)
-    },
-    tasks: [
-
-    ]
-  };
+  // Hcamos una copia del objeti
+  const taskDayCopy = dayTaks;
 
   // Ahora tenemos que recorrer todas las filas para añadir un event listener a cada uno
   rows.forEach((row) => {
     getTimer(row);
-
-    row.addEventListener('change', (e) => {
-      saveTasks(row);
-    });
+    saveTasks(row);
   });
 
   function saveTasks(task) {
@@ -47,30 +31,13 @@ export const getValueRow = (date) => {
       rowValues.duracion !== '0' &&
       rowValues.hora !== '0'
     ){
-      dayTaks.tasks.push(rowValues)
-      // console.log('Task added:', rowValues);
-      // console.log('Updated dayTaks:', dayTaks);
+      taskDayCopy.tasks.push(rowValues)
+      console.log('task added o taskDayCopy:', taskDayCopy.tasks);
     }
   }
-  return dayTaks;
+  return taskDayCopy;
 };
 
-const getActualDate = (date) => {
-  const dateString = date.toString();
-  const parts = dateString.split(" ");
-  // console.log(result,parts);
-  return parts;
-};
-
-const getWeekNumber = (d) => {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-};
-
-// TODO - It's not respecting the use of AM/PM. We need use a 24 hours format?.
 const getTimer = (row) => {
   const inputTimeStart = row.querySelector('input#time-start');
   const inputTimeEnd = row.querySelector('input#time-end');
