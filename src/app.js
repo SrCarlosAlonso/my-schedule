@@ -11,10 +11,10 @@ const { tbodyEntries, defaulRows, dateValue, submitButton } = domElements;
 let dayTaks = {
   id: '99',
   date: {
-    day: '',
-    month: '',
-    year: '',
-    week: ''
+    day: '03',
+    month: 'May',
+    year: '2025',
+    week: '19'
   },
   tasks: [
 
@@ -48,7 +48,9 @@ export const initializeApp = () => {
   const rows = document.querySelectorAll('.entry-row');
   rows.forEach((row) => {
     row.addEventListener('change', (e) => {
-      dayTaks = getValueRow(dayTaks);
+      const objTasks = dayTaks.tasks;
+      row = e.target.parentElement.parentElement; // Get the row element
+      dayTaks.tasks = getValueRow(objTasks, row); // Get the values from the row
     });
   });
 

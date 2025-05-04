@@ -1,15 +1,8 @@
 import { alert } from './showAlert.js'
 
-export const getValueRow = (dayTaks) => {
-  const rows = document.querySelectorAll('.entry-row');
-  // Hcamos una copia del objeti
-  const taskDayCopy = dayTaks;
-
-  // Ahora tenemos que recorrer todas las filas para añadir un event listener a cada uno
-  rows.forEach((row) => {
-    getTimer(row);
-    saveTasks(row);
-  });
+export const getValueRow = (dayTaks, row) => {
+  getTimer(row);
+  saveTasks(row);
 
   function saveTasks(task) {
     const children = Array.from(task.children)
@@ -30,12 +23,12 @@ export const getValueRow = (dayTaks) => {
       rowValues.fin !== '00:00' &&
       rowValues.duracion !== '0' &&
       rowValues.hora !== '0'
-    ){
-      taskDayCopy.tasks.push(rowValues)
-      console.log('task added o taskDayCopy:', taskDayCopy.tasks);
+    ) {
+      dayTaks.push(rowValues)
+      console.log(dayTaks);
     }
   }
-  return taskDayCopy;
+  return dayTaks;
 };
 
 const getTimer = (row) => {
