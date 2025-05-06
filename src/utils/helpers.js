@@ -7,3 +7,7 @@ export const deleteChild = (parent) => {
     parent.removeChild(parent.firstChild);
   }
 }
+
+export const existInArray = (arrray, id) =>{
+  return arrray.some((item) => item.id === id);
+}
