@@ -1,33 +1,32 @@
 import { alert } from './showAlert.js'
 
-export const getValueRow = (dayTaks, row) => {
+export const saveRowAsTask = (dayTaks, row) => {
   getTimer(row);
-  saveTasks(row);
 
-  function saveTasks(task) {
-    const children = Array.from(task.children)
-    const id = task.id;
-    const rowValues = {
-      id: `row-${id}`,
-      cliente: children[0].querySelector('.entry-input').value,
-      tarea: children[1].querySelector('.entry-input').value,
-      inicio: conversor(children[2].querySelector('.entry-input').value) || '00:00',
-      fin: conversor(children[3].querySelector('.entry-input').value) || '00:00',
-      duracion: children[4].textContent,
-      hora: children[5].textContent,
-    }
-    if (
-      rowValues.cliente !== '' &&
-      rowValues.tarea !== '' &&
-      rowValues.inicio !== '00:00' &&
-      rowValues.fin !== '00:00' &&
-      rowValues.duracion !== '0' &&
-      rowValues.hora !== '0'
-    ) {
-      dayTaks.push(rowValues)
-      console.log(dayTaks);
-    }
+  const children = Array.from(row.children);
+  const id = row.id;
+  const rowValues = {
+    id: `row-${id}`,
+    cliente: children[0].querySelector('.entry-input').value,
+    tarea: children[1].querySelector('.entry-input').value,
+    inicio: conversor(children[2].querySelector('.entry-input').value) || '00:00',
+    fin: conversor(children[3].querySelector('.entry-input').value) || '00:00',
+    duracion: children[4].textContent,
+    hora: children[5].textContent,
+  };
+
+  if (
+    rowValues.cliente !== '' &&
+    rowValues.tarea !== '' &&
+    rowValues.inicio !== '00:00' &&
+    rowValues.fin !== '00:00' &&
+    rowValues.duracion !== '0' &&
+    rowValues.hora !== '0'
+  ) {
+    dayTaks.push(rowValues);
+    console.log('From getValueRow', dayTaks);
   }
+
   return dayTaks;
 };
 

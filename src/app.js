@@ -1,6 +1,6 @@
 import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
-import { getValueRow } from './utils/entryRowHandler.js';
+import { saveRowAsTask } from './utils/entryRowHandler.js';
 import { deleteChild } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
@@ -48,9 +48,10 @@ export const initializeApp = () => {
   const rows = document.querySelectorAll('.entry-row');
   rows.forEach((row) => {
     row.addEventListener('change', (e) => {
-      const objTasks = dayTaks.tasks;
+      const dayTasksCopy = dayTaks.tasks;
       row = e.target.parentElement.parentElement; // Get the row element
-      dayTaks.tasks = getValueRow(objTasks, row); // Get the values from the row
+      dayTaks.tasks = saveRowAsTask(dayTasksCopy, row); // Get the values from the row
+      console.log('From event', dayTaks);
     });
   });
 
