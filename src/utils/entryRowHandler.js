@@ -1,4 +1,5 @@
 import { alert } from './showAlert.js'
+import { existInArray } from './helpers.js';
 
 export const saveRowAsTask = (dayTaks, row) => {
   getTimer(row);
@@ -23,7 +24,8 @@ export const saveRowAsTask = (dayTaks, row) => {
     rowValues.duracion !== '0' &&
     rowValues.hora !== '0'
   ) {
-    dayTaks.push(rowValues);
+    existInArray(dayTaks, rowValues.id) ? editExistTaks(dayTaks, rowValues) : dayTaks.push(rowValues);
+
     console.log('From getValueRow', dayTaks);
   }
 
@@ -58,3 +60,13 @@ function conversor(hora) {
   const [h, m] = hora.split(':').map(Number);
   return h * 60 + m;
 }
+
+const editExistTaks = (dayTask, row) => {
+  const rowId = row.id;
+  const rowIndex = dayTask.map((task) => task.id).indexOf(rowId);
+  console.log('rowIndex', rowIndex, rowId);
+  if (rowIndex !== -1) {
+    dayTask[rowIndex] = row;
+  }
+  return dayTask;
+};
