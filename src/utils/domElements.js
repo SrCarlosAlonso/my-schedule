@@ -7,6 +7,7 @@ export const domElements = {
   monthValue: document.querySelector('#timer-month'),
   dayValue: document.querySelector('#timer-day'),
   submitButton: document.querySelector('#schedule-submit'),
+  resetButton: document.querySelector('#schedule-reset'),
   // Dafault values
   defaulRows: 5,
 };

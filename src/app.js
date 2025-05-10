@@ -5,7 +5,7 @@ import { deleteChild } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
 import { domElements } from './utils/domElements.js'
-const { tbodyEntries, defaulRows, dateValue, submitButton } = domElements;
+const { tbodyEntries, defaulRows, dateValue, submitButton, resetButton } = domElements;
 
 // Define objt for save the tasks of the day
 let dayTaks = {
@@ -63,6 +63,21 @@ export const initializeApp = () => {
       return alert('error', 'No hay tareas para guardar');
     }
     saveSchedule(dayTaks);
+  });
+
+  // #5 - Listener for the reset button, and the reset of object (need confirmation)
+  resetButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const confirmation = confirm('¿Estas seguro de resetear el formulario?');
+    if (confirmation) {
+      deleteChild(tbodyEntries);
+      for (let i = 0; i < defaulRows; i++) {
+        defaultEntry();
+      }
+      dayTaks.tasks = [];
+      console.log('dayTaks:', dayTaks);
+      date = new Date();
+    };
   });
 
 };
