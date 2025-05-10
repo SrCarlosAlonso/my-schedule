@@ -16,7 +16,7 @@ let dayTasks = {
     year: ' ',
     week: ' '
   },
-  tasks: [  ]
+  tasks: []
 };
 
 export const initializeApp = () => {
@@ -42,7 +42,7 @@ export const initializeApp = () => {
 
       ]
     };
-    console.log('From fillDateTask',dayTasks)
+    console.log('From fillDateTask', dayTasks)
     return dayTasks
   }
   fillDateDayTask(dateObj)
@@ -51,7 +51,7 @@ export const initializeApp = () => {
   dateValue.addEventListener('change', (e) => {
     date = new Date(dateValue.value);
     generateDateValue(date);
-    getDataRows(date);
+    fillDateDayTask(dateObj)
   })
 
   // #1 - Delete all the rows from the table.
@@ -63,7 +63,6 @@ export const initializeApp = () => {
   }
 
   // #3 - Listeners for the rows Entrys than whe generated.
-  // * - Collect the values from the rows before to save them in storage.
   const rows = document.querySelectorAll('.entry-row');
   rows.forEach((row) => {
     row.addEventListener('change', (e) => {
@@ -75,7 +74,6 @@ export const initializeApp = () => {
   });
 
   // #4 - Listener for the submit button, to save the data.
-  // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     if (dayTasks.tasks.length === 0) {
