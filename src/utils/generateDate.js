@@ -25,7 +25,7 @@ export const generateDateValue = (date) => {
   const weekNum = getWeekNumber(date);
 
   dateObj = {
-    moth: monthsName[monthNum],
+    month: monthsName[monthNum],
     day: daysName[dayWeek],
     week: weekNum,
     fullDate: date.toISOString().split('T')[0]
@@ -37,7 +37,7 @@ export const generateDateValue = (date) => {
 
 export const printDate = (date) => {
   dayValue.innerHTML = date.day;
-  monthValue.innerHTML = date.moth;
+  monthValue.innerHTML = date.month;
   weekValue.innerHTML = `Semana   <span>${date.week}</span>`;
 
   dateValue.value = date.fullDate;
