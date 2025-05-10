@@ -1,7 +1,7 @@
 import { generateDateValue, dateObj, printDate } from './utils/generateDate.js';
 import { defaultEntry } from './components/defaulEntry.js';
 import { saveRowAsTask } from './utils/entryRowHandler.js';
-import { deleteChild } from './utils/helpers.js';
+import { deleteChild, generateID } from './utils/helpers.js';
 import { alert } from './utils/showAlert.js'
 
 import { domElements } from './utils/domElements.js'
@@ -9,16 +9,14 @@ const { tbodyEntries, defaulRows, dateValue, submitButton, resetButton } = domEl
 
 // Define objt for save the tasks of the day
 let dayTasks = {
-  id: '99',
+  id: ' ',
   date: {
-    day: '03',
-    month: 'May',
-    year: '2025',
-    week: '19'
+    day: ' ',
+    month: ' ',
+    year: ' ',
+    week: ' '
   },
-  tasks: [
-
-  ]
+  tasks: [  ]
 };
 
 export const initializeApp = () => {
@@ -27,6 +25,27 @@ export const initializeApp = () => {
   // #0 - Dafault date is today
   let date = new Date();
   generateDateValue(date);
+
+  const fillDateDayTask = (date) => {
+    const { fullDate, month, week } = date;
+    console.log(date)
+
+    dayTasks = {
+      id: `id-${generateID()}`,
+      date: {
+        day: fullDate.split('-')[2],
+        month: month,
+        year: fullDate.split('-')[0],
+        week: week
+      },
+      tasks: [
+
+      ]
+    };
+    console.log('From fillDateTask',dayTasks)
+    return dayTasks
+  }
+  fillDateDayTask(dateObj)
 
   //  If the date is changed, the date object is updated and the date is printed.
   dateValue.addEventListener('change', (e) => {
