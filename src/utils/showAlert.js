@@ -2,6 +2,10 @@ import { domElements } from './domElements.js'
 const { scheduleWrapper } = domElements;
 
 export const alert = (type, message) => {
+
+  // Eliminamos la alerta si existe
+  document.querySelector('#alert')?.remove();
+
   const alert = document.createElement('div');
   alert.id = 'alert';
   alert.classList.add(type);
