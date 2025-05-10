@@ -8,7 +8,7 @@ import { domElements } from './utils/domElements.js'
 const { tbodyEntries, defaulRows, dateValue, submitButton, resetButton } = domElements;
 
 // Define objt for save the tasks of the day
-let dayTaks = {
+let dayTasks = {
   id: '99',
   date: {
     day: '03',
@@ -48,10 +48,10 @@ export const initializeApp = () => {
   const rows = document.querySelectorAll('.entry-row');
   rows.forEach((row) => {
     row.addEventListener('change', (e) => {
-      const dayTasksCopy = dayTaks.tasks;
+      const dayTasksCopy = dayTasks.tasks;
       row = e.target.parentElement.parentElement; // Get the row element
-      dayTaks.tasks = saveRowAsTask(dayTasksCopy, row); // Get the values from the row
-      console.log('From event', dayTaks);
+      dayTasks.tasks = saveRowAsTask(dayTasksCopy, row); // Get the values from the row
+      console.log('From event', dayTasks);
     });
   });
 
@@ -59,10 +59,10 @@ export const initializeApp = () => {
   // * - It's only when the button is clicked that the object "myScheduleStorage" is saved in local storage.
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    if (dayTaks.tasks.length === 0) {
+    if (dayTasks.tasks.length === 0) {
       return alert('error', 'No hay tareas para guardar');
     }
-    saveSchedule(dayTaks);
+    saveSchedule(dayTasks);
   });
 
   // #5 - Listener for the reset button, and the reset of object (need confirmation)
@@ -74,8 +74,8 @@ export const initializeApp = () => {
       for (let i = 0; i < defaulRows; i++) {
         defaultEntry();
       }
-      dayTaks.tasks = [];
-      console.log('dayTaks:', dayTaks);
+      dayTasks.tasks = [];
+      console.log('dayTasks:', dayTasks);
       date = new Date();
     };
   });
