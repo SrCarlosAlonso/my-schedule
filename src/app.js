@@ -19,8 +19,11 @@ let dayTasks = {
   tasks: []
 };
 
+// let storage = handlerLocalStorage();
+
 export const initializeApp = () => {
   // console.log('App has been initialized');
+  // storage.set(dayTasks)
 
   // #0 - Dafault date is today
   let date = new Date();
@@ -28,7 +31,6 @@ export const initializeApp = () => {
 
   const fillDateDayTask = (date) => {
     const { fullDate, month, week } = date;
-    console.log(date)
 
     dayTasks = {
       id: `id-${generateID()}`,
@@ -42,7 +44,6 @@ export const initializeApp = () => {
 
       ]
     };
-    console.log('From fillDateTask', dayTasks)
     return dayTasks
   }
   fillDateDayTask(dateObj)
@@ -100,6 +101,36 @@ export const initializeApp = () => {
 };
 
 // TODO - This function should save the object "myScheduleStorage" in local storage.
-const saveSchedule = (dayTaks) => {
-  console.log('dayTaks:', dayTaks);
+const saveSchedule = (dayTasks) => {
+  console.log('Save in local storage')
+  // storage.add(dayTasks)
+  // storage.getByID()
 };
+
+// function handlerLocalStorage(key = 'allDayTasks') {
+//   return {
+//     // Leer todos
+//     getAll() {
+//       const data = localStorage.getItem(key)
+//       return data ? JSON.parse(data) : []
+//     },
+//     // Get by ID
+//     getByID(id) {
+//       return this.getAll.find(item => item.id === id)
+//     },
+//     // Add
+//     add(dayTask) {
+//       const all = this.getAll()
+//       this.set([...all, dayTask])
+//     },
+//     // Define
+//     set(data) {
+//       localStorage.setItem(key, JSON.stringify(data))
+//     },
+//     // Delete
+//     remove(id) {
+//       const filtered = this.getAll().filter(item => item.id !== id)
+//       this.set(filtered)
+//     }
+//   }
+// }
